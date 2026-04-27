@@ -1,0 +1,33 @@
+# OpenSpec Config Example
+#
+# Copy this file to openspec/config.yaml in any project
+# that uses ckg-agent-kit + ckg-mcp.
+#
+# Requires: ckg-aware schema installed (./install.sh --global or --project)
+
+# Schema provided by ckg-agent-kit
+schema: ckg-aware
+
+context: |
+  This project uses a Code Knowledge Graph (CKG) backed by Neo4j.
+  CKG MCP tools are available: search_graph, trace_call_path,
+  get_impact_radius, get_affected_flows, get_code_snippet, get_flow.
+  Always use graph data to ground proposals, designs, and task ordering.
+  If CKG MCP is not connected, degrade gracefully — write "Graph unavailable"
+  in graph-dependent sections and proceed with manual analysis.
+
+rules:
+  proposal:
+    - Always fill the "Blast Radius (from CKG)" section using get_impact_radius
+    - List actual function names from the graph, not guessed names
+  design:
+    - Fill "Dependencies from Graph" tables using trace_call_path (direction both, depth 3)
+    - Fill "Cross-Repo Impact" using get_impact_radius
+    - Reference function degree counts when discussing risk
+  tasks:
+    - Order tasks leaf-first (low-caller functions before high-caller hubs)
+    - Mark cross-repo tasks with [CROSS-REPO]
+    - Group tasks by repo when changes span multiple repositories
+  specs:
+    - Use get_code_snippet to verify function signatures before specifying interfaces
+    - Reference actual parameter names and types from the graph
