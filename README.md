@@ -1,6 +1,6 @@
 # ckg-agent-kit
 
-Agent skills and OpenSpec schema for projects backed by the [Code Knowledge Graph (CKG)](https://github.com/your-org/joern-KG-builder).
+Agent skills and OpenSpec schema for projects backed by the [Code Knowledge Graph (CKG)](https://github.com/rdk-gdcs/ml-smart-guidance/).
 
 Drop into any project to get graph-powered AI workflows: blast radius analysis, call flow tracing, and spec-driven development with real structural data baked in.
 
